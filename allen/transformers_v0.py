@@ -23,7 +23,7 @@ class CausalSelfAttention(nn.Module):
         self.qkv_proj = nn.Linear(E, 3 * E, bias=False)
         # output projection
         self.proj = nn.Linear(E, E, bias=False) # its actually H * (E / H)
-        # mask, registered bugger var will not attend training and , but it will go to GPU mem.
+        # mask, registered bugger var will not attend training but it will go to GPU mem.
         self.register_buffer(
             "mask",
             torch.tril(torch.ones(1, 1, L, L, dtype=bool)), # max seq len
@@ -78,8 +78,8 @@ class Transformers(nn.Module):
         self.mlp = MLP()
     
     def forward(self, x):
-        x = x + self.attention(x)
-        x = x + self.mlp(x)
+        x = x + self.attention(x) # residual connections
+        x = x + self.mlp(x) # residual connections
         return x
 
 if __name__ == "__main__":
