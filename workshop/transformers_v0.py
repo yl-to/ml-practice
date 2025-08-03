@@ -1,5 +1,6 @@
 """
 Simplest version of Transformers
+Implement a forward pass for transformer
 """ 
 
 import torch
