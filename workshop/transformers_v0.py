@@ -23,7 +23,6 @@ class CausalSelfAttention(nn.Module):
 class MLP(nn.Module):
     def __init__(self):
         super().__init__()
-        # [B, T, E] -> 
         pass
 
     def forward(self, x):
@@ -44,6 +43,8 @@ if __name__ == "__main__":
     # B-> batch size
     # L -> seq length
     # E -> vocab embedding dimension
+    # INPUT: B, L, E
+    # OUTPUT: B, L, E
     batched_input = torch.randn(B, L, E)
     trans = Transformers()
     output = trans(batched_input)
