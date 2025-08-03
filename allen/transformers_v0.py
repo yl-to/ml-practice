@@ -13,6 +13,9 @@ E = 64 # embedding dimension
 H = 4 # attention head count
 
 class CausalSelfAttention(nn.Module):
+    """
+    Input -> q, k, v projection -> attention -> cross-head projection
+    """
     def __init__(self):
         super().__init__()
         # 3 is for q, k and v, its actually 3 * H * (E / H), for multi-head impl
