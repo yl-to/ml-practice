@@ -45,7 +45,7 @@ class CausalSelfAttention(nn.Module):
         
         # attention formula : attn_matrix = softmax(Q * Kt / sqrt(E//H)) * V 
         # attention matrix: q * kt -> [B, H, Tq, Tk]
-        attn = (q * k.transpose(2, 3) / math.sqrt(E // H)) # [B, H, T, T]
+        attn = (q @ k.transpose(2, 3) / math.sqrt(E // H)) # [B, H, T, T]
         # cut pre-made tril mask from [L, L] into [T, T], fill -inf before softmax, when softmax it will approach 0
         attn = attn.masked_fill(~self.mask[:, :, :T, :T], float('-inf')) # [B, H, T, T]
         attn = F.softmax(attn, dim=-1) # softmax on k's dimension, so every query get its attention on all the keys
