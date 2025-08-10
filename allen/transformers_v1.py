@@ -17,6 +17,8 @@ Compared with v0:
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from torch.optim import Adam 
+
 import math
 
 B = 8 # batch size
@@ -121,8 +123,8 @@ class Transformers(nn.Module):
         x = x + self.attention(x) # residual connections
         x = x + self.mlp(x) # residual connections
         x = self.norm(x)
-        x = self.unembedding(x) # lm head, back to token id
-        return x
+        logits = self.unembedding(x) # lm head, back to token id
+        return logits
 
 if __name__ == "__main__":
     # B-> batch size
@@ -130,6 +132,17 @@ if __name__ == "__main__":
     # E -> vocab embedding dimension
     # batched_input = torch.randn(B, L, E) # mock input embeddings
     batched_input = torch.randint(0, V, (B, L), dtype=torch.long) # mock input token ids
-    transformers = Transformers()
-    output = transformers(batched_input)
-    print(output.shape)
+    target_logits = torch.randn(B, L, V)
+
+    model = Transformers()
+    optimizer = Adam(model.parameters(), lr=1e-3)
+    criterion = nn.MSELoss()
+    
+    for i in range(1000):
+        optimizer.zero_grad()
+        output_logits = model(batched_input)
+        loss = criterion(output_logits, target_logits)
+        print(loss)
+        loss.backward()
+        optimizer.step()
+        
