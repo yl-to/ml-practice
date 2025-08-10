@@ -123,7 +123,7 @@ class Transformers(nn.Module):
         x = x + self.attention(x) # residual connections
         x = x + self.mlp(x) # residual connections
         x = self.norm(x)
-        logits = self.unembedding(x) # lm head, back to token id
+        logits = self.unembedding(x) # lm head, to logits
         return logits
 
 if __name__ == "__main__":
