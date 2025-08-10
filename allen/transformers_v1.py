@@ -1,15 +1,17 @@
 """
 Simplest version of Transformers
 Compared with v0:
-1. [Done] add pre-norm, RMSNorm 
+1. [Done] add pre-norm, RMSNorm
 2. [Done] add vocab embedding and unembedding
 3. [Done] add positional embedding (normal)
-4. add MOE to MLP
-5. change relu to swiglu (customized)
-6. add ROTE positional embedding 
-7. training loop with optimizers
-8. try overfit tiny story dataset (pretraining)
-9. post tuning by using GRPO + lora
+4. [TODO] change relu to swiglu (customized)
+5. [TODO] training loop with optimizers
+6. add MOE to MLP
+7. add ROTE positional embedding 
+8. add grouped Query Attention 
+9. add sliding window attention
+10. try overfit tiny story dataset (pretraining)
+11. post tuning by using GRPO + lora
 """
 
 import torch

@@ -9,8 +9,9 @@ Compared with v0:
 6. add MOE to MLP
 7. add ROTE positional embedding 
 8. add grouped Query Attention 
-9. try overfit tiny story dataset (pretraining)
-10. post tuning by using GRPO + lora
+9. add sliding window attention
+10. try overfit tiny story dataset (pretraining)
+11. post tuning by using GRPO + lora
 """ 
 
 import torch
