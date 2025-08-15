@@ -5,7 +5,7 @@ Compared with v0:
 2. [Done] add vocab embedding and unembedding
 3. [Done] add positional embedding (normal)
 4. [TODO] change relu to swiglu (customized)
-5. [TODO] training loop with optimizers
+5. [Done] training loop with optimizers
 6. add MOE to MLP
 7. add ROTE positional embedding 
 8. add grouped Query Attention 
@@ -39,7 +39,6 @@ class RMSNorm(nn.Module):
     def forward(self, x):
         x = x * torch.rsqrt(torch.mean(x ** 2, dim=-1, keepdim=True) + self.eps)
         return x * self.scale
-
 
 class CausalSelfAttention(nn.Module):
     """
