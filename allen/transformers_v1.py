@@ -12,6 +12,7 @@ Compared with v0:
 9. add sliding window attention
 10. try overfit tiny story dataset (pretraining)
 11. post tuning by using GRPO + lora
+12. add kv cache
 """
 
 import torch
