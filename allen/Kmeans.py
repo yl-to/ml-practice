@@ -14,9 +14,10 @@ data = np.random.randn(100, 2)
 centroids = np.random.randn(K, 2)
 
 
-groups = {k: [] for k in range(K)}
+
 
 for i in range(10):
+    groups = {k: [] for k in range(K)}
     for dp in data:
         dists = []
         for cent in centroids:
